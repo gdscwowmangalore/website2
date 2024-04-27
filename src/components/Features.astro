@@ -1,0 +1,50 @@
+---
+interface Props {}
+
+const {} = Astro.props;
+const features = [
+  "Speaker Sessions",
+  "Swags and Goodies",
+  "Workshops",
+  "Networking",
+];
+---
+
+<section class="text-gray-600 body-font -mb-10">
+  <div class="container px-20 mx-auto">
+    <div class="flex flex-col text-center w-full">
+      <h1
+        class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900 flex items-center justify-center"
+      >
+        What is GDSC
+        <img src="/wow.png" class="h-28 w-28" />
+
+        2024?
+      </h1>
+      <p class="lg:w-2/3 mx-auto leading-relaxed text-base -mt-10 mb-10">
+        GDSC WoW 2024 is a full-day tech extravaganza featuring talks,
+        workshops, coding contests, and a thrilling Treasure Hunt called
+        "Treasure to WOW." Hosted by 200+ GDSCs across India, it unites
+        students, developers, and communities for a shared learning experience.
+        With experts guiding real-time projects, it's the perfect launchpad for
+        beginners into the world of tech careers.
+      </p>
+    </div>
+    <div class="flex flex-wrap -m-4 text-center">
+      {
+        features.map((feature) => (
+          <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
+            <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
+              <h2
+                class="title-font
+                    font-medium text-lg text-gray-900"
+              >
+                {feature}
+              </h2>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

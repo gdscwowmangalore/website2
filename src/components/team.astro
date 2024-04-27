@@ -1,0 +1,69 @@
+---
+import GDSC from "./logos/GDSC.astro";
+
+export function chunk<T>(array: readonly T[], size: number): T[][] {
+  if (size <= 0 || !Number.isInteger(size)) {
+    throw new Error(
+      `Expected size to be an integer greater than 0 but found ${size}`
+    );
+  }
+
+  if (array.length === 0) {
+    return [];
+  }
+
+  const ret = Array.from<T[]>({ length: Math.ceil(array.length / size) });
+  let readIndex = 0;
+  let writeIndex = 0;
+
+  while (readIndex < array.length) {
+    ret[writeIndex] = array.slice(readIndex, readIndex + size);
+
+    writeIndex += 1;
+    readIndex += size;
+  }
+
+  return ret;
+}
+
+const namesChunk = chunk(
+  [
+    "SJEC Vamanjoor",
+    "SIT Valachil",
+    "KLEIT Hubli",
+    "PACE Nadupadav",
+    "SCEM Adyar",
+    "NMAMIT Deralakatte",
+  ].sort((a, b) => a.localeCompare(b)),
+  2
+);
+---
+
+<section class="text-gray-600 body-font -mt-20">
+  <div class="container px-24 mx-auto">
+    <div class="flex flex-col text-center w-full">
+      <h1
+        class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
+      >
+        Partners
+      </h1>
+      <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
+        We are proud to be associated with the following institutions.
+      </p>
+    </div>
+    <div class="grid grid-cols-3 gap-4">
+      {
+        namesChunk.map((names) => (
+          <div class="flex gap-2 flex-col lg:flex-row">
+            {names.map((name) => (
+              <div class="h-full flex flex-col lg:flex-row items-center p-4 rounded-lg gap-4">
+                <GDSC />
+                <h2 class="text-gray-900 title-font font-medium">{name}</h2>
+              </div>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
